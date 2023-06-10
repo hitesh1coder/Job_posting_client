@@ -1,0 +1,105 @@
+.job_container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  background: rgba(255, 239, 239, 1);
+}
+.job_post {
+  z-index: 200;
+  position: absolute;
+  top: -1.3rem;
+  width: 80%;
+  height: 20vh;
+  padding: 1rem 5rem;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.1rem;
+  text-align: center;
+  box-shadow: 0px 4px 23px 2px rgba(0, 0, 0, 0.1);
+}
+.job_description {
+  padding: 2rem 3rem;
+  width: 80%;
+  background: #fff;
+  margin-top: 10rem;
+  box-shadow: 0px 4px 23px 2px rgba(0, 0, 0, 0.1);
+}
+.time p,
+span {
+  color: rgba(153, 153, 153, 1);
+}
+.job_position {
+  display: flex;
+  justify-content: space-between;
+}
+.edit_btn {
+  border: none;
+  outline: none;
+  padding: 0.4rem;
+  width: 8rem;
+  color: #fff;
+  background: #ed5353;
+  font-size: 1rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+.location {
+  display: flex;
+  gap: 0.5rem;
+}
+.location p {
+  color: #ed5353;
+  margin: 0.5rem 0;
+}
+.basic_details {
+  width: 30%;
+}
+.detail_heading,
+.detail_value {
+  margin: 0.8rem 0;
+  display: flex;
+  justify-content: space-between;
+}
+.detail_heading p {
+  color: rgba(153, 153, 153, 1);
+}
+.detail_value p {
+  color: rgba(89, 89, 89, 1);
+}
+.time,
+.about_company,
+.about_jobs,
+.additional_info,
+.responsibility {
+  margin: 1rem 0;
+}
+.about_company,
+.about_jobs,
+.additional_info p {
+  padding: 1rem 0 0.6rem 0;
+  line-height: 1.5rem;
+  word-spacing: 0.3rem;
+  color: #595959;
+}
+
+.responsibility > ol > li {
+  line-height: 1.5rem;
+  color: #595959;
+}
+.responsibility ol {
+  padding: 0.5rem 0 0 1rem;
+}
+.skills_section .skills {
+  display: flex;
+  gap: 1rem;
+}
+.skills p {
+  margin: 1rem 0;
+  padding: 0.4rem 1rem;
+  background: #ffeeee;
+  color: #595959;
+  border-radius: 5rem;
+}

@@ -1,0 +1,71 @@
+.addjob_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+.addjob_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 65vw;
+  height: 100vh;
+}
+.addjob_form {
+  padding: 0.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  gap: 0.2rem;
+}
+.input_div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+.addjob_form .input_box {
+  padding: 0.5rem;
+  border: 2px solid rgb(230, 230, 230);
+  border-radius: 0.3rem;
+  outline: none;
+  width: 60%;
+  /* color: #c2c2c2; */
+}
+.addjob_form .input_option {
+  padding: 0.5rem;
+  border: 2px solid rgb(230, 230, 230);
+  border-radius: 0.3rem;
+  outline: none;
+  width: 20%;
+  margin-right: 14.7rem;
+}
+.btns {
+  align-self: flex-end;
+}
+.addjob_btn {
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  padding: 0.4rem 1rem;
+  width: 8rem;
+  margin-top: 1rem;
+  border-radius: 0.3rem;
+  color: #fff;
+  background: #ed5353;
+  margin-left: 0.5rem;
+  cursor: pointer;
+}
+.cancle_btn {
+  cursor: pointer;
+  border: 1px solid #c2c2c2;
+  outline: none;
+  font-size: 1rem;
+  padding: 0.4rem 1rem;
+  width: 8rem;
+  color: #c2c2c2;
+  margin-top: 1rem;
+  border-radius: 0.3rem;
+  background: #fff;
+}

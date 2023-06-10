@@ -1,31 +1,63 @@
 import React, { useState } from "react";
 import "./Register.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import AuthImage from "../AuthImage";
+import axios from "axios";
 
 const Register = () => {
   const [formValue, setFormValue] = useState({
     name: "",
     email: "",
-    password: "",
     mobile: "",
+    password: "",
   });
+  const navigate = useNavigate();
+  const [isacceptTerm, setIsacceptTerm] = useState(false);
   const [error, setError] = useState(false);
+
   const handleChange = (e) => {
     setFormValue({ ...formValue, [e.target.name]: e.target.value });
   };
-  const handleSubmit = (e) => {
+  const handleCheck = (e) => {
+    if (e.target.checked) {
+      setIsacceptTerm(true);
+    } else {
+      setIsacceptTerm(false);
+    }
+  };
+
+  formValue.terms = isacceptTerm;
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (
       !formValue.name ||
       !formValue.email ||
+      !formValue.mobile ||
       !formValue.password ||
-      !formValue.password
+      formValue.terms === false
     ) {
       setError(true);
     } else {
       setError(false);
       console.log(formValue);
+      try {
+        const config = {
+          headers: { "Content-Type": "application/json" },
+        };
+        const { name, email, mobile, password, terms } = formValue;
+        const user = await axios.post(
+          "http://localhost:5500/register",
+          { name, email, mobile, password, terms },
+          config
+        );
+        const { data } = user;
+        localStorage.setItem("user", JSON.stringify(data));
+        navigate("/");
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
   return (
@@ -68,7 +100,12 @@ const Register = () => {
               value={formValue.password}
             />
             <div className="checkbox">
-              <input type="checkbox" name="terms" />
+              <input
+                type="checkbox"
+                name="terms"
+                onChange={handleCheck}
+                value={isacceptTerm}
+              />
               <label htmlFor="terms">
                 by creataing an account, I agree to our Term of use and privacy
                 policy
@@ -84,7 +121,7 @@ const Register = () => {
           </form>
           <div className="footer_desc">
             <span>Already have an account ?</span>
-            <Link to="/">Sign In</Link>
+            <Link to="/login">Sign In</Link>
           </div>
         </div>
       </div>

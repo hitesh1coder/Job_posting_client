@@ -5,6 +5,11 @@
   width: 100vw;
   height: 100vh;
 }
+.img_container {
+  width: 35vw;
+  height: 100vh;
+  position: relative;
+}
 .container {
   width: 50vw;
   height: 100vh;

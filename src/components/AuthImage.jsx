@@ -1,5 +1,5 @@
 import React from "react";
-import Authimage from "/images/authImage.png";
+import Authimage from "../images/authImage.png";
 import "../App.css";
 
 const AuthImage = () => {
