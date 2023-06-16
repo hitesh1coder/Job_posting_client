@@ -1,31 +1,76 @@
 import React from "react";
 import "./JobDetails.css";
+import { useLocation, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Header from "../Home/Header/Header";
 import stipend from "../../images/stipend.png";
 import duration from "../../images/duration.png";
+
 const JobDetails = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const jobData = location.state;
+  const id = jobData._id;
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  const editJobHandler = async () => {
+    if (user) {
+      navigate("/update-job", {
+        state: id,
+      });
+    } else {
+      toast.error("You have to register or login first to Make changes", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      setTimeout(() => {
+        navigate("/login");
+      }, 5000);
+    }
+  };
   return (
     <>
       <Header />
       <div className="job_container">
         <div className="job_post">
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
           <h2>
-            WordPress Development work from home job/intership at Adyaka Infosek
-            Private Limited
+            {jobData.position} {jobData.workplace} {jobData.jobtype}{" "}
+            job/internship at {jobData.campanyname}
           </h2>
         </div>
         <div className="job_description">
           <div className="time">
             <p>
-              <span>1w ago</span> . FullTime
+              <span>1w ago</span> . {jobData.jobtype}
             </p>
           </div>
           <div className="job_position">
-            <h1>WordPress Development</h1>
-            <button className="edit_btn">Edit Job</button>
+            <h1>{jobData.position}</h1>
+            <button className="edit_btn" onClick={editJobHandler}>
+              Edit Job
+            </button>
           </div>
           <div className="location">
-            <p>Banglore</p>
+            <p>{jobData.location}</p>
             <p>India</p>
           </div>
           <div className="basic_details">
@@ -45,34 +90,18 @@ const JobDetails = () => {
               </p>
             </div>
             <div className="detail_value">
-              <p>Rs 25000/month</p>
+              <p>Rs {jobData.salary}/month</p>
               <p>6 months</p>
             </div>
           </div>
           <div className="about_company">
             <h3>About Company</h3>
-            <p>
-              We provide technology-based services to help businesses and
-              organizations achieve their goals. We offer a wide range of
-              services, including software development, system integration,
-              network and security services, cloud computing, and data
-              analytics. Our primary focus is on leveraging technology to
-              streamline business processes, improve productivity, and enhance
-              overall efficiency.
-            </p>
+            <p>{jobData.aboutcampany}</p>
           </div>
           <div className="about_jobs">
             <h3>About Job/Internship</h3>
-            <p>
-              We are looking for a responsible PHP/WordPress/Laravel/Shopify
-              Developer. He/She will be liable for managing services and
-              therefore the interchange of knowledge between the server and the
-              users. The candidate's primary focus is going to be the event of
-              all server-side logic, definition, and maintenance of the central
-              database and ensuring high performance and responsiveness to
-              requests from the front end.
-            </p>
-            <div className="responsibility">
+            <p>{jobData.jobdesc}</p>
+            {/* <div className="responsibility">
               Selected intern's day-to-day responsibilities include:
               <ol>
                 <li>
@@ -95,14 +124,18 @@ const JobDetails = () => {
                   website
                 </li>
               </ol>
-            </div>
+            </div> */}
           </div>
           <div className="skills_section">
             <h3>skill(s) required</h3>
             <div className="skills">
-              <p>CSS</p>
-              <p>JavaScript</p>
-              <p>WordPress</p>
+              {jobData?.skillsArray?.map((skill, i) => {
+                return (
+                  <p key={i} className="skill">
+                    {skill}
+                  </p>
+                );
+              })}
             </div>
           </div>
           <div className="additional_info">

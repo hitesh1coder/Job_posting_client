@@ -4,18 +4,25 @@ import logo from "../../../images/campany3.jpg";
 import groupIcon from "../../../images/icons8-group-50.png";
 import rupeeIcon from "../../../images/icons8-rupee-24.png";
 import flagIcon from "../../../images/icons8-indian-flag-64.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const AllJobs = () => {
+const AllJobs = ({ job }) => {
+  const navigate = useNavigate();
+  const openJobDetails = async () => {
+    navigate("/detail", {
+      state: job,
+    });
+  };
+
   return (
     <div className="main_container">
       <div className="job_conatiner ">
         <div className="logo">
-          <img src={logo} alt="logo" />
+          <img src={job ? job.logourl : logo} alt="logo" />
         </div>
         <div className="job_desc">
           <div className="job_position">
-            <h3>Frontend Developer</h3>
+            <h3>{job?.position}</h3>
           </div>
           <div className="about_job">
             <p>
@@ -29,31 +36,35 @@ const AllJobs = () => {
               <span>
                 <img className="icon_img" src={rupeeIcon} alt="" />
               </span>
-              50,000
+              {job?.salary}
             </p>
             <p>
               {" "}
               <span>
                 <img className="icon_img" src={flagIcon} alt="" />
               </span>
-              delhi
+              {job?.location}
             </p>
           </div>
           <div className="job_type">
-            <p>office</p>
-            <p>full time</p>
+            <p>{job?.jobtype}</p>
+            <p>{job?.workplace}</p>
           </div>
         </div>
         <div className="job_details">
           <div className="skills">
-            <p className="skill">Frontend</p>
-            <p className="skill">CSS</p>
-            <p className="skill">JavaScript</p>
-            <p className="skill">Node</p>
+            {job?.skillsArray?.map((skill, i) => {
+              return (
+                <p key={i} className="skill">
+                  {skill}
+                </p>
+              );
+            })}
           </div>
-          <Link to="/detail">
-            <button className="details_btn">View Details</button>
-          </Link>
+
+          <button className="details_btn" onClick={openJobDetails}>
+            View Details
+          </button>
         </div>
       </div>
     </div>

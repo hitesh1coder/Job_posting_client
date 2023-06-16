@@ -13,6 +13,27 @@
   top: 1.2rem;
   left: 1.8rem;
 }
+.user_details {
+  position: absolute;
+  right: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.user_details p {
+  color: #fff;
+  font-weight: bold;
+}
+.user_details p:first-child {
+  cursor: pointer;
+}
+.user_details img {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+}
 .nav {
   position: absolute;
   right: 3rem;

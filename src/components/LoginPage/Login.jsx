@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./Login.css";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
 import AuthImage from "../AuthImage";
 import axios from "axios";
@@ -30,9 +32,31 @@ const Login = () => {
         });
         const { data } = user;
         localStorage.setItem("user", JSON.stringify(data));
-        navigate("/");
+        toast.success("login successfull", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        setTimeout(() => {
+          navigate("/");
+        }, 4000);
       } catch (error) {
-        console.log(error.message);
+        console.log(error.response);
+        toast.error(`${error.response.data.message}`, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       }
     }
   };
@@ -40,6 +64,18 @@ const Login = () => {
     <div className="wrapper">
       <div className="login_container">
         <div className="login">
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
           <h1>Already have an Account ?</h1>
           <p>Your personal jobfinder is here</p>
           <form className="login_form" onSubmit={handleSubmit}>

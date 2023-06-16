@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import "../AddJobPage/AddJob.css";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./AddJob.css";
-import SideImage from "./SideImage";
+import SideImage from "../AddJobPage/SideImage";
 
-const AddJob = () => {
+const UpdateJob = () => {
   const [formValue, setFormValue] = useState({
     campanyname: "",
     logourl: "",
@@ -21,19 +21,34 @@ const AddJob = () => {
   });
   const [error, setError] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const id = location.state;
+  const user = JSON.parse(localStorage.getItem("user"));
+  const token = user.token;
+
   const handleChange = (e) => {
     setFormValue({ ...formValue, [e.target.name]: e.target.value });
   };
-  const handleCancle = () => {
-    console.log("sdjnmsd");
-    navigate("/");
-  };
 
-  const user = JSON.parse(localStorage.getItem("user"));
-  const token = user.token;
+  const getData = async () => {
+    try {
+      const result = await axios.get(`http://localhost:5500/job/${id}`);
+      const { data } = result;
+      if (data) {
+        setFormValue(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getData();
+  }, []);
+  const handleCancle = () => {};
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    formValue.skills = formValue.skills.toLowerCase();
     if (
       !formValue.campanyname ||
       !formValue.logourl ||
@@ -43,13 +58,11 @@ const AddJob = () => {
       !formValue.workplace ||
       !formValue.location ||
       !formValue.jobdesc ||
-      !formValue.aboutcampany ||
-      !formValue.skills.length > 0
+      !formValue.aboutcampany
     ) {
       setError(true);
     } else {
       setError(false);
-
       try {
         const config = {
           headers: { "Content-Type": "application/json", token: token },
@@ -66,8 +79,8 @@ const AddJob = () => {
           aboutcampany,
           skills,
         } = formValue;
-        const newJob = await axios.post(
-          "http://localhost:5500/add-job",
+        const updateJob = await axios.put(
+          `http://localhost:5500/job/${id}`,
           {
             campanyname,
             logourl,
@@ -82,7 +95,7 @@ const AddJob = () => {
           },
           config
         );
-        const { data } = newJob;
+        const { data } = await updateJob;
         toast.success(`${data.message}`, {
           position: "top-center",
           autoClose: 5000,
@@ -93,12 +106,10 @@ const AddJob = () => {
           progress: undefined,
           theme: "light",
         });
-
         setTimeout(() => {
           navigate("/");
         }, 3000);
       } catch (error) {
-        console.log(error);
         if (error.request.status === 500) {
           toast.error(`${error.response.data.message}`, {
             position: "top-center",
@@ -114,6 +125,7 @@ const AddJob = () => {
             navigate("/");
           }, 3000);
         }
+        console.log(error);
       }
     }
   };
@@ -133,7 +145,7 @@ const AddJob = () => {
             pauseOnHover
             theme="light"
           />
-          <h1>Add Job Description</h1>
+          <h1>Update This Job Description</h1>
           <form className="addjob_form" onSubmit={handleSubmit}>
             <label className="input_div" htmlFor="campanyname">
               Company Name
@@ -251,21 +263,21 @@ const AddJob = () => {
                 className="input_box"
                 type="text"
                 name="skills"
-                placeholder="Enter the must have skills with comma seperated"
+                placeholder="Enter the must Required skills"
                 onChange={handleChange}
-                value={formValue.skills}
+                value={formValue.skillsArray}
               />
             </label>
             <p className="error">
               {error ? "* all fields required in the form" : ""}
             </p>
             <div className="btns">
-              <button className="cancle_btn" onClick={handleCancle}>
+              <button className="cancle_btn" onSubmit={handleCancle}>
                 Cancle
               </button>
-              <button className="addjob_btn" onClick={handleSubmit}>
+              <button className="addjob_btn" onSubmit={handleSubmit}>
                 {" "}
-                +Add Job
+                Update
               </button>
             </div>
           </form>
@@ -276,4 +288,4 @@ const AddJob = () => {
   );
 };
 
-export default AddJob;
+export default UpdateJob;

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./Register.css";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
 
 import AuthImage from "../AuthImage";
@@ -53,10 +55,45 @@ const Register = () => {
         );
         const { data } = user;
         localStorage.setItem("user", JSON.stringify(data));
-        navigate("/");
+        if (data.status === "failed") {
+          toast.warn(`${data.message}`, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        } else {
+          toast.success(`${data.message}`, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        }
+        setTimeout(() => {
+          navigate("/");
+        }, 3000);
         console.log(data);
       } catch (error) {
         console.log(error);
+        toast.error(`${error.response.data.message}`, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       }
     }
   };
@@ -64,6 +101,18 @@ const Register = () => {
     <div className="wrapper">
       <div className="register_container">
         <div className="register">
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
           <h1>Create an Account</h1>
           <p>Your personal jobfinder is here</p>
           <form className="register_form" onSubmit={handleSubmit}>

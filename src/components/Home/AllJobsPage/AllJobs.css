@@ -58,9 +58,11 @@
 .job_desc .job_type {
   display: flex;
   justify-content: space-between;
-  width: 40%;
   margin-top: 0.2rem;
   color: #ed5353;
+}
+.job_type {
+  width: 60%;
 }
 .job_details {
   height: 15vh;
