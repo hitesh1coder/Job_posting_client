@@ -4,7 +4,7 @@ import logo from "../../../images/campany3.jpg";
 import groupIcon from "../../../images/icons8-group-50.png";
 import rupeeIcon from "../../../images/icons8-rupee-24.png";
 import flagIcon from "../../../images/icons8-indian-flag-64.png";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const AllJobs = ({ job }) => {
   const navigate = useNavigate();

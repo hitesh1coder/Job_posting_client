@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./Header.css";
 import userImage from "../../../images/userAvator.jpg";
 import { Link, useNavigate } from "react-router-dom";
+
 const Header = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
   const logoutUser = () => {
     localStorage.removeItem("user");
-    navigate("/login");
+    setTimeout(() => {
+      navigate("/login");
+    }, 3000);
   };
 
   return (

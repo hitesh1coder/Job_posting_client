@@ -26,10 +26,13 @@ const Login = () => {
       console.log(formValue);
       try {
         const { email, password } = formValue;
-        const user = await axios.post("http://localhost:5500/login", {
-          email,
-          password,
-        });
+        const user = await axios.post(
+          "https://node-capstone.onrender.com/login",
+          {
+            email,
+            password,
+          }
+        );
         const { data } = user;
         localStorage.setItem("user", JSON.stringify(data));
         toast.success("login successfull", {

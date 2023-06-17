@@ -33,7 +33,9 @@ const UpdateJob = () => {
 
   const getData = async () => {
     try {
-      const result = await axios.get(`http://localhost:5500/job/${id}`);
+      const result = await axios.get(
+        `https://node-capstone.onrender.com/job/${id}`
+      );
       const { data } = result;
       if (data) {
         setFormValue(data);

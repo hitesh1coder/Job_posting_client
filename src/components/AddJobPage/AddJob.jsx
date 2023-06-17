@@ -67,7 +67,7 @@ const AddJob = () => {
           skills,
         } = formValue;
         const newJob = await axios.post(
-          "http://localhost:5500/add-job",
+          "https://node-capstone.onrender.com/add-job",
           {
             campanyname,
             logourl,

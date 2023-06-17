@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
-import "./SearchJobs.css";
+import { Link } from "react-router-dom";
+import "./MainSection.css";
 import axios from "axios";
-import AllJobs from "../AllJobsPage/AllJobs";
+import AllJobs from "../AllJobsSection/AllJobs";
 
-const SearchJobs = () => {
+const MainSection = () => {
   const [jobs, setJobs] = useState([]);
   const [searchJob, setSearchJob] = useState("");
   const [selectedSkills, setSelectedSkills] = useState([]);
@@ -25,9 +25,12 @@ const SearchJobs = () => {
   };
   const fetchAllJobs = async () => {
     try {
-      const AllJobs = await axios.get(`http://localhost:5500/jobs`, {
-        params: { skills: userSelectedSkills },
-      });
+      const AllJobs = await axios.get(
+        `https://node-capstone.onrender.com/jobs`,
+        {
+          params: { skills: userSelectedSkills },
+        }
+      );
       const { data } = AllJobs;
       setJobs(data);
     } catch (err) {
@@ -116,4 +119,4 @@ const SearchJobs = () => {
   );
 };
 
-export default SearchJobs;
+export default MainSection;

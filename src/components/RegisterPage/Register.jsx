@@ -49,7 +49,7 @@ const Register = () => {
         };
         const { name, email, mobile, password, terms } = formValue;
         const user = await axios.post(
-          "http://localhost:5500/register",
+          "https://node-capstone.onrender.com/register",
           { name, email, mobile, password, terms },
           config
         );

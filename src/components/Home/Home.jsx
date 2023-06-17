@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./Home.css";
 import Header from "./Header/Header";
-import SearchJobs from "./SeachJobBox/SearchJobs";
 
-import axios from "axios";
+import MainSection from "./MainSection/MainSection";
 const Home = () => {
   return (
     <div className="home_container">
       <Header />
       <div className="jobs_container">
-        <SearchJobs />
+        <MainSection />
       </div>
     </div>
   );
