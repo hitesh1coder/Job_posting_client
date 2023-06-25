@@ -17,6 +17,9 @@
   border-radius: 0.1rem;
   padding: 0.5rem;
 }
+.job_conatiner:hover {
+  border-left: 2px solid #ed5353;
+}
 .logo {
   width: 10%;
   height: 15vh;
@@ -96,4 +99,44 @@
   font-size: 1rem;
   border-radius: 0.3rem;
   cursor: pointer;
+}
+
+/* Responsive styles{ */
+@media only screen and (max-width: 470px) {
+  .job_conatiner {
+    width: 93vw;
+    height: 20vh;
+    margin: 0.5rem;
+  }
+  .job_desc {
+    height: 20vh;
+    width: 60%;
+  }
+  .logo img {
+    width: 130%;
+  }
+  .job_details {
+    height: 20vh;
+    width: 30%;
+    justify-content: flex-start;
+  }
+  .skills {
+    height: 15vh;
+    flex-wrap: wrap;
+  }
+  .about_job p {
+    font-size: 0.8rem;
+    margin: 0 0.2rem;
+  }
+  .skills .skill {
+    padding: 0.3rem;
+    width: 4rem;
+    height: 1.7rem;
+    border-radius: 2rem;
+  }
+  .details_btn {
+    padding: 0.2rem;
+    font-size: 0.5rem;
+    width: 4rem;
+  }
 }

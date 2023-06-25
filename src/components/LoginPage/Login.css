@@ -54,3 +54,27 @@
 .error {
   color: rgb(184, 6, 6);
 }
+
+/* Responsive styles{ */
+@media only screen and (max-width: 470px) {
+  .wrapper {
+    flex-direction: column;
+  }
+  .login_container {
+    width: 100vw;
+  }
+  .login {
+    gap: 0;
+    width: 95vw;
+    align-items: center;
+  }
+  .login_form {
+    width: 80vw;
+    padding: 0.3rem;
+  }
+  .sign_btn {
+    padding: 0.2rem;
+    margin-top: 0;
+    width: 8rem;
+  }
+}

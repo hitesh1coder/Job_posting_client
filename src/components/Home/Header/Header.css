@@ -35,6 +35,8 @@
   border-radius: 50%;
 }
 .nav {
+  display: flex;
+  align-items: center;
   position: absolute;
   right: 3rem;
 }
@@ -50,8 +52,21 @@
   background: transparent;
   border: 1px solid #fff;
 }
-.register_btn {
+.register_btn2 {
   color: #ed5353;
   background: #fff;
   border: 1px solid #ed5353;
+}
+
+/* Responsive styles{ */
+@media only screen and (max-width: 470px) {
+  .nav {
+    width: 15rem;
+    right: -3rem;
+  }
+  .nav button {
+    padding: 0.3rem 0;
+    width: 4rem;
+    margin: 1rem 0.2rem;
+  }
 }

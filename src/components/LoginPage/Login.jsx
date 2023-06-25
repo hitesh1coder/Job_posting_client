@@ -23,7 +23,7 @@ const Login = () => {
       setError(true);
     } else {
       setError(false);
-      console.log(formValue);
+
       try {
         const { email, password } = formValue;
         const user = await axios.post(

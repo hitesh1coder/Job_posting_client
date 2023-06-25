@@ -83,3 +83,33 @@
   border-radius: 0.3rem;
   cursor: pointer;
 }
+/* Responsive styles{ */
+@media only screen and (max-width: 470px) {
+  .search_container {
+    width: 92vw;
+  }
+  .input_search {
+    width: 80vw;
+  }
+  .select_options {
+    width: 93vw;
+    gap: 0.2rem;
+  }
+  .addjobOption {
+    width: 18%;
+  }
+  .selected_skills {
+    width: 70%;
+  }
+  .skills_div p {
+    padding: 0.1rem 0.2rem;
+  }
+  .skills_div span {
+    padding: 0.1rem 0.2rem;
+  }
+  .add_btn {
+    padding: 0.2rem;
+    font-size: 0.5rem;
+    width: 4rem;
+  }
+}

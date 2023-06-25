@@ -16,7 +16,7 @@ const AllJobs = ({ job }) => {
 
   return (
     <div className="main_container">
-      <div className="job_conatiner ">
+      <div className="job_conatiner">
         <div className="logo">
           <img src={job ? job.logourl : logo} alt="logo" />
         </div>

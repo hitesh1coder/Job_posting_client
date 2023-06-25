@@ -6,6 +6,7 @@
   height: 100vh;
 }
 .img_container {
+  display: block;
   width: 35vw;
   height: 100vh;
   position: relative;
@@ -25,4 +26,15 @@
 .auth_img {
   width: 100%;
   height: 99%;
+}
+
+/* Responsive styles{ */
+@media only screen and (max-width: 470px) {
+  .container {
+    width: 100vw;
+    height: 30vh;
+  }
+  .img_container {
+    display: none;
+  }
 }
