@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./MainSection.css";
 import axios from "axios";
 import AllJobs from "../AllJobsSection/AllJobs";
-import LoadingSkeletain from "./loadingSkeletain";
+import LoadingSkeletain from "./LoadingSkeletain";
 
 const MainSection = () => {
   const [jobs, setJobs] = useState([]);
