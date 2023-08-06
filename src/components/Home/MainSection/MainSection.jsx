@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import "./MainSection.css";
 import axios from "axios";
 import AllJobs from "../AllJobsSection/AllJobs";
+import LoadingSkeletain from "./loadingSkeletain";
 
 const MainSection = () => {
   const [jobs, setJobs] = useState([]);
   const [searchJob, setSearchJob] = useState("");
   const [selectedSkills, setSelectedSkills] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -24,6 +26,7 @@ const MainSection = () => {
     setSelectedSkills([]);
   };
   const fetchAllJobs = async () => {
+    setLoading(true);
     try {
       const AllJobs = await axios.get(
         `https://node-capstone.onrender.com/jobs`,
@@ -32,6 +35,7 @@ const MainSection = () => {
         }
       );
       const { data } = AllJobs;
+      setLoading(false);
       setJobs(data);
     } catch (err) {
       console.error(err);
@@ -112,9 +116,13 @@ const MainSection = () => {
           </p>
         </div>
       </div>
-      {jobs?.map((job, i) => {
-        return <AllJobs key={i} job={job} />;
-      })}
+      {loading ? (
+        <LoadingSkeletain />
+      ) : (
+        jobs?.map((job, i) => {
+          return <AllJobs loading={loading} key={i} job={job} />;
+        })
+      )}
     </>
   );
 };

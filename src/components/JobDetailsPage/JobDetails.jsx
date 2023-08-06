@@ -14,13 +14,14 @@ const JobDetails = () => {
   const id = jobData._id;
 
   const user = JSON.parse(localStorage.getItem("user"));
+
   const editJobHandler = async () => {
     if (user) {
       navigate("/update-job", {
         state: id,
       });
     } else {
-      toast.error("You have to register or login first to Make changes", {
+      toast.error("You have to register or login first to make changes", {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -35,10 +36,11 @@ const JobDetails = () => {
       }, 5000);
     }
   };
+
   return (
     <>
       <Header />
-      <div className="job_container">
+      <div className="jobs_container">
         <div className="job_post">
           <ToastContainer
             position="top-right"
@@ -101,33 +103,9 @@ const JobDetails = () => {
           <div className="about_jobs">
             <h3>About Job/Internship</h3>
             <p>{jobData.jobdesc}</p>
-            {/* <div className="responsibility">
-              Selected intern's day-to-day responsibilities include:
-              <ol>
-                <li>
-                  {" "}
-                  Work on the development of theme customization, liquid
-                  programming language, and corresponding apps
-                </li>
-                <li>
-                  {" "}
-                  Implement system integrations that are crucial to our success
-                </li>
-                <li>
-                  {" "}
-                  Contribute to the development of HTML5/CSS/JavaScript and
-                  standard web technologies integral to building seamless
-                  multi-channel experiences
-                </li>
-                <li>
-                  Work on speed optimization and making a mobile-friendly
-                  website
-                </li>
-              </ol>
-            </div> */}
           </div>
           <div className="skills_section">
-            <h3>skill(s) required</h3>
+            <h3>Skill(s) Required</h3>
             <div className="skills">
               {jobData?.skillsArray?.map((skill, i) => {
                 return (

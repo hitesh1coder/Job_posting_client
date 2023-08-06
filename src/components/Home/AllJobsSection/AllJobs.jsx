@@ -6,7 +6,7 @@ import rupeeIcon from "../../../images/icons8-rupee-24.png";
 import flagIcon from "../../../images/icons8-indian-flag-64.png";
 import { useNavigate } from "react-router-dom";
 
-const AllJobs = ({ job }) => {
+const AllJobs = ({ job, loading }) => {
   const navigate = useNavigate();
   const openJobDetails = async () => {
     navigate("/detail", {
