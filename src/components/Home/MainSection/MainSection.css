@@ -1,6 +1,6 @@
 .container_div {
   width: 100vw;
-  height: 28vh;
+  height: 29vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,7 +10,7 @@
 }
 .search_container {
   width: 85vw;
-  height: 25vh;
+  height: 27vh;
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   display: flex;
@@ -20,7 +20,7 @@
 }
 
 .input_search {
-  width: 70vw;
+  width: 75vw;
   padding: 1rem;
   border: 2px solid rgb(228, 225, 225);
   margin: 0.5rem 0;
@@ -29,7 +29,7 @@
 }
 .select_options {
   margin-top: 1rem;
-  width: 70vw;
+  width: 75vw;
   display: flex;
   gap: 1rem;
   padding: 0.4rem;
@@ -41,7 +41,7 @@
   border: 2px solid rgb(230, 230, 230);
   border-radius: 0.3rem;
   outline: none;
-  width: 10%;
+  width: 12%;
 }
 .selected_skills {
   width: 80%;
@@ -51,15 +51,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 0.3rem;
+  margin: 0 0.1rem;
 }
 .skills_div p {
   color: black;
-  padding: 0.4rem 0.8rem;
+  padding: 0.2rem 0.5rem;
   background: #ebcfcf;
 }
 .skills_div span {
-  padding: 0.4rem 0.8rem;
+  padding: 0.2rem 0.2rem;
   color: #fff;
   background: #ed5353;
   cursor: pointer;
@@ -69,7 +69,7 @@
   cursor: pointer;
 }
 .addjobOption {
-  width: 10%;
+  width: 22%;
 }
 .add_btn {
   border: none;
@@ -84,12 +84,8 @@
 }
 /* Responsive styles{ */
 @media only screen and (max-width: 470px) {
-  .container_div {
-    height: 20vh;
-  }
   .search_container {
     width: 92vw;
-    height: 20vh;
   }
   .input_search {
     width: 80vw;
@@ -98,6 +94,10 @@
     width: 93vw;
     gap: 0.2rem;
   }
+  .form-select {
+    padding: 0.1rem;
+    width: 18%;
+  }
   .addjobOption {
     width: 18%;
   }
@@ -105,10 +105,10 @@
     width: 70%;
   }
   .skills_div p {
-    padding: 0.1rem 0.2rem;
+    font-size: 0.6rem;
   }
   .skills_div span {
-    padding: 0.1rem 0.2rem;
+    padding: 0rem 0.2rem;
   }
   .add_btn {
     padding: 0.2rem;

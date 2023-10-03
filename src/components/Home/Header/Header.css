@@ -69,4 +69,8 @@
     width: 4rem;
     margin: 1rem 0.2rem;
   }
+  .user_details {
+    right: 0.3rem;
+    margin-top: 0.3rem;
+  }
 }

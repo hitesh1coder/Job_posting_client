@@ -41,7 +41,8 @@
   align-items: flex-start;
   padding: 0 0.5rem;
 }
-.job_desc .about_job {
+.job_desc,
+.about_job {
   margin: 0.4rem 0;
   width: 80%;
   display: flex;
@@ -103,12 +104,16 @@
 @media only screen and (max-width: 470px) {
   .job_conatiner {
     width: 92vw;
-    height: 22vh;
+    height: 25vh;
     margin: 0.5rem;
   }
+
   .job_desc {
     height: 20vh;
-    width: 60%;
+    width: 85%;
+  }
+  .about_job {
+    width: 100%;
   }
   .logo img {
     width: 130%;
@@ -121,9 +126,6 @@
   .skills {
     height: 15vh;
     flex-wrap: wrap;
-  }
-  .about_job {
-    width: 100%;
   }
   .about_job p {
     font-size: 0.8rem;

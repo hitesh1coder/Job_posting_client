@@ -55,7 +55,7 @@ const JobDetails = () => {
             theme="light"
           />
           <h2>
-            {jobData.position} {jobData.workplace} {jobData.jobtype}{" "}
+            {jobData.position} {jobData.workplace} {jobData.jobtype}
             job/internship at {jobData.campanyname}
           </h2>
         </div>

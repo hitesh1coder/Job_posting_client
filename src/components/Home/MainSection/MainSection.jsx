@@ -17,10 +17,7 @@ const MainSection = () => {
 
   const userSelectedSkills = selectedSkills.toString().toLowerCase();
   const removeSkill = (index) => {
-    setSelectedSkills([
-      ...selectedSkills.slice(0, index),
-      ...selectedSkills.slice(index + 1),
-    ]);
+    setSelectedSkills([...selectedSkills.filter((_, i) => i !== index)]);
   };
   const clearSkills = () => {
     setSelectedSkills([]);
@@ -28,37 +25,38 @@ const MainSection = () => {
   const fetchAllJobs = async () => {
     setLoading(true);
     try {
-      const AllJobs = await axios.get(
+      const response = await axios.get(
         `https://node-capstone.onrender.com/jobs`,
         {
           params: { skills: userSelectedSkills },
         }
       );
-      const { data } = AllJobs;
+      setJobs(response.data);
+    } catch (error) {
+      console.error(error);
+    } finally {
       setLoading(false);
-      setJobs(data);
-    } catch (err) {
-      console.error(err);
     }
   };
 
   useEffect(() => {
     fetchAllJobs();
   }, [selectedSkills, searchJob]);
+
   const handleSearch = (e) => {
-    if (e.target.value === "") {
-      setJobs(jobs);
+    const searchTerm = e.target.value.toLowerCase();
+
+    if (searchTerm === "") {
+      setSearchJob(jobs);
       return;
-    } else {
-      const filterBySearch = jobs.filter((item) => {
-        if (
-          item.position.toLowerCase().includes(e.target.value.toLowerCase())
-        ) {
-          return item;
-        }
-      });
-      setJobs(filterBySearch);
     }
+
+    const filteredJobs = jobs.filter((item) => {
+      const position = item.position.toLowerCase();
+      return position.includes(searchTerm.toLowerCase());
+    });
+
+    setJobs(filteredJobs);
   };
 
   return (
@@ -96,7 +94,7 @@ const MainSection = () => {
                 return (
                   <div key={i} className="skills_div">
                     <p>{skill}</p>
-                    <span onClick={() => removeSkill(i)}>+</span>
+                    <span onClick={() => removeSkill(i)}>*</span>
                   </div>
                 );
               })}

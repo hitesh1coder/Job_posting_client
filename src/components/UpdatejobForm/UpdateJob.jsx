@@ -47,7 +47,9 @@ const UpdateJob = () => {
   useEffect(() => {
     getData();
   }, []);
-  const handleCancle = () => {};
+  const handleCancle = () => {
+    navigate(-1);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -109,9 +111,10 @@ const UpdateJob = () => {
           theme: "light",
         });
         setTimeout(() => {
-          navigate("/");
+          navigate(-1);
         }, 3000);
       } catch (error) {
+        console.log(error);
         if (error.request.status === 500) {
           toast.error(`${error.response.data.message}`, {
             position: "top-center",
@@ -127,7 +130,6 @@ const UpdateJob = () => {
             navigate("/");
           }, 3000);
         }
-        console.log(error);
       }
     }
   };
@@ -274,7 +276,7 @@ const UpdateJob = () => {
               {error ? "* all fields required in the form" : ""}
             </p>
             <div className="btns">
-              <button className="cancle_btn" onSubmit={handleCancle}>
+              <button className="cancle_btn" onClick={handleCancle}>
                 Cancle
               </button>
               <button className="addjob_btn" onSubmit={handleSubmit}>

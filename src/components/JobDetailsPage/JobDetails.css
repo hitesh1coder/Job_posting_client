@@ -8,10 +8,10 @@
 .job_post {
   z-index: 200;
   position: absolute;
-  top: -1.3rem;
+  top: 0.7rem;
   width: 80%;
   height: 20vh;
-  padding: 1rem 5rem;
+  padding: 1rem;
   background: #fff;
   display: flex;
   justify-content: center;
@@ -102,4 +102,22 @@ span {
   background: #ffeeee;
   color: #595959;
   border-radius: 5rem;
+}
+/* Responcive  code  */
+@media only screen and (max-width: 470px) {
+  .job_post {
+    top: 2rem;
+    width: 90%;
+    padding: 0 1rem;
+  }
+  .job_post > h2 {
+    width: 90%;
+  }
+  .job_description {
+    width: 90%;
+    padding: 1rem;
+  }
+  .edit_btn {
+    height: 2.3rem;
+  }
 }
